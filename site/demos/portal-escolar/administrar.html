@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Portal Escolar</title>
+    <link rel="stylesheet" href="css/adm.css">
+    <link rel="stylesheet" href="../faixa.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="js/dados-demo.js"></script>
+    <script src="js/demo.js"></script>
+</head>
+<body>
+<div class="faixa-demo"><span>Demonstração com dados fictícios. Nada é salvo.</span><a href="../../#p-portal-escolar">Voltar ao portfólio</a></div>
+    <header>
+        <nav class="navbar">
+            <div class="logo" onclick="toggleLeftSidebar()">
+                <img src="images/avatar-1.svg" alt="Imagem de Perfil" class="profile-img">
+            </div>
+            <div class="menu">
+                <span class="menu-toggle" onclick="openRightSidebar()">&#9776; Menu</span>
+    
+            </div>
+        </nav>
+    </header>
+
+<!-- Right Sidebar -->
+<div id="rightSidebar" class="sidebar">
+    <a href="javascript:void(0)" onclick="closeRightSidebar()">&#10005; Fechar</a>
+    <h3>Notícias Recentes</h3>
+    <div class="news-quick-view">
+        <a href="#" data-demo-ausente>Notícia 1</a>
+        <a href="#" data-demo-ausente>Notícia 2</a>
+        <a href="#" data-demo-ausente>Matrículas Abertas</a>
+    </div>
+</div>
+
+<!-- Left Sidebar -->
+<div id="leftSidebar" class="sidebar">
+    <a href="javascript:void(0)" onclick="closeLeftSidebar()">&#10005; Fechar</a>
+    
+        <a href="perfil-direcao.html">Perfil</a>
+        
+            <a href="administrar.html">Administração</a>
+            <a href="cadastro.html">Cadastrar Usuário</a>
+        
+        
+        
+        <a href="inicio-direcao.html">Pagina inicial</a>
+        <a href="index.html">Logout</a>
+    
+</div>
+
+<main>
+    <section class="user-management">
+        <h2>Gestão de Usuários</h2>
+
+        <!-- Formulário para adicionar novo usuário -->
+        <form action="#" data-demo="nao-salva" method="POST" class="user-form">
+            <h3>Adicionar Novo Usuário</h3>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+            
+            <label for="cargo">Cargo:</label>
+            <select id="cargo" name="cargo">
+                <option value="aluno">Aluno</option>
+                <option value="professor">Professor</option>
+            </select>
+            
+            <button type="submit">Adicionar Usuário</button>
+        </form>
+
+        <!-- Lista de usuários -->
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Cargo</th>
+                    <th>Ações</th>
+                    <th>Matérias</th> 
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr>
+                        <td>Helena Duarte Campos</td>
+                        <td>direcao@escola.example</td>
+                        <td>direcao</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-1.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Marcos Vinícius Teles</td>
+                        <td>professor@escola.example</td>
+                        <td>professor</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-2.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                
+                                
+                                    <ul>
+                                        
+                                            <li>Matemática</li>
+                                        
+                                            <li>Física</li>
+                                        
+                                    </ul>
+                                
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Patrícia Nogueira Lins</td>
+                        <td>patricia.lins@escola.example</td>
+                        <td>professor</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-3.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                
+                                
+                                    <ul>
+                                        
+                                            <li>Língua Portuguesa</li>
+                                        
+                                            <li>Inglês</li>
+                                        
+                                    </ul>
+                                
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Renato Alves Brandão</td>
+                        <td>renato.brandao@escola.example</td>
+                        <td>professor</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-4.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                
+                                
+                                    <p>Sem matérias associadas</p>
+                                
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Ana Clara Moreira</td>
+                        <td>aluno@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-5.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Bruno Henrique Sales</td>
+                        <td>bruno.sales@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-6.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Camila Rocha Prado</td>
+                        <td>camila.prado@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-7.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Diego Fernandes Lima</td>
+                        <td>diego.lima@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-8.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Eduarda Martins Freitas</td>
+                        <td>eduarda.freitas@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-9.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Felipe Augusto Rangel</td>
+                        <td>felipe.rangel@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-10.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Gabriela Souza Pinto</td>
+                        <td>gabriela.pinto@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-11.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Igor Matheus Coelho</td>
+                        <td>igor.coelho@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-12.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Júlia Castro Mendes</td>
+                        <td>julia.mendes@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-13.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>Lucas Barbosa Teixeira</td>
+                        <td>lucas.teixeira@escola.example</td>
+                        <td>aluno</td>
+                        <td>
+                            <!-- Botões para editar e deletar usuário -->
+                            <form action="editar-14.html" method="GET" class="action-form">
+                                <button type="submit">Editar</button>
+                            </form>
+                            <form action="#" data-demo="nao-salva" method="POST" class="action-form">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                            </form>
+                        </td>
+                        <td>
+                            
+                                <p>N/A</p>
+                            
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script>
+    function openRightSidebar() {
+        const sidebar = document.getElementById("rightSidebar");
+        sidebar.classList.add("open");
+    }
+
+    function closeRightSidebar() {
+        const sidebar = document.getElementById("rightSidebar");
+        sidebar.classList.remove("open");
+    }
+
+    function toggleLeftSidebar() {
+        const leftSidebar = document.getElementById("leftSidebar");
+        leftSidebar.style.width = leftSidebar.style.width === "250px" ? "0" : "250px";
+    }
+
+    function closeLeftSidebar() {
+        document.getElementById("leftSidebar").style.width = "0";
+    }
+</script>
+</body>
+</html>

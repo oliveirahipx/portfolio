@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HipFinance, demonstração</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600&family=Schibsted+Grotesk:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../faixa.css">
+  <style>
+    .hf { max-width: 1160px; margin: 0 auto; padding: 32px 16px 64px; display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+    @media (min-width: 900px) { .hf { grid-template-columns: minmax(0, 1fr) 400px; padding-left: 32px; padding-right: 32px; } }
+    .hf h1 { font: 800 clamp(2rem, 5vw, 3rem)/1.05 var(--f-titulo); letter-spacing: -0.03em; margin: 0 0 16px; }
+    .hf p, .hf li { max-width: 40em; }
+    .hf ul { padding-left: 1.2em; }
+    .aparelho { justify-self: center; width: 100%; max-width: 400px; aspect-ratio: 390 / 844; max-height: calc(100vh - 80px); border: 10px solid var(--tinta); border-radius: 36px; overflow: hidden; background: #0A0F1E; }
+    .aparelho iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .so-celular { display: none; }
+    @media (max-width: 599px) {
+      .aparelho { display: none; }
+      .so-celular { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="faixa-demo"><span>Demonstração com dados fictícios. Nenhuma conta bancária é conectada.</span><a href="../../#p-hipfinance">Voltar ao portfólio</a></div>
+  <main class="hf">
+    <div>
+      <h1>HipFinance</h1>
+      <p>É a versão de demonstração do app, compilada para a web a partir do mesmo código Flutter do Android. Ela abre direto no cenário do Lucas, um personagem fictício com contas e cartões inventados, sem login e sem acesso ao servidor.</p>
+      <p>O que dá para ver aqui:</p>
+      <ul>
+        <li><strong>Início</strong>: quanto vence no mês, quanto falta pagar somando todos os cartões, os próximos vencimentos e o dinheiro em conta.</li>
+        <li><strong>Cartões</strong>: para cada cartão, a fatura aberta com as datas de fechamento e vencimento, o total que falta pagar e o limite disponível.</li>
+        <li>O olho no topo esconde os valores.</li>
+      </ul>
+      <p>No app de verdade os dados vêm dos bancos via Open Finance e ficam cifrados no servidor. As abas Lançar, Investir e Descobrir aparecem como "Em breve" nesta demonstração.</p>
+      <p class="so-celular"><a class="botao botao--baixar" href="app/">Abrir o app em tela cheia</a></p>
+      <p><a class="botao botao--secundario" href="https://hipfinance.com.br">Site do HipFinance</a></p>
+    </div>
+    <div class="aparelho">
+      <iframe src="app/" title="HipFinance, versão de demonstração" loading="lazy"></iframe>
+    </div>
+  </main>
+</body>
+</html>

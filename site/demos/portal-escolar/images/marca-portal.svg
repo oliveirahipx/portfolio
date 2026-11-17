@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Portal Escolar">
+  <rect width="300" height="300" rx="24" fill="#34495e"/>
+  <g fill="none" stroke="#ecf0f1" stroke-width="8" stroke-linejoin="round">
+    <path d="M150 92 L70 120 L150 148 L230 120 Z"/>
+    <path d="M100 132 V178 C120 196 180 196 200 178 V132"/>
+    <path d="M230 120 V170"/>
+  </g>
+  <circle cx="230" cy="176" r="8" fill="#ecf0f1"/>
+  <text x="150" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ecf0f1">Portal Escolar</text>
+</svg>

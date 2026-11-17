@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/notas.css">
+    <title>Notas</title>
+    <link rel="stylesheet" href="../faixa.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="js/dados-demo.js"></script>
+    <script src="js/demo.js"></script>
+</head>
+<body>
+<div class="faixa-demo"><span>Demonstração com dados fictícios. Nada é salvo.</span><a href="../../#p-portal-escolar">Voltar ao portfólio</a></div>
+    <header>
+        <h1>Sistema de Notas</h1>
+        <a href="index.html">Sair</a>
+    </header>
+
+    <main>
+        
+            <h2>Bem-vindo, Ana Clara Moreira</h2>
+            <div class="container">
+                <h3>Consultar Notas</h3>
+                <form id="consulta-notas-form" data-demo="consultar-notas">
+                    <label for="materia">Matéria:</label>
+                    <select id="materia" name="materia">
+                        
+                            <option value="1">Matemática</option>
+                        
+                            <option value="2">Língua Portuguesa</option>
+                        
+                            <option value="3">Biologia</option>
+                        
+                            <option value="4">Física</option>
+                        
+                            <option value="5">Química</option>
+                        
+                            <option value="6">História</option>
+                        
+                            <option value="7">Geografia</option>
+                        
+                            <option value="8">Inglês</option>
+                        
+                    </select>
+                    <label for="bimestre">Bimestre:</label>
+                    <select id="bimestre" name="bimestre">
+                        <option value="1">1º Bimestre</option>
+                        <option value="2">2º Bimestre</option>
+                        <option value="3">3º Bimestre</option>
+                        <option value="4">4º Bimestre</option>
+                    </select>
+                    <button type="submit">Consultar</button>
+                </form>
+                <div id="resultado-notas"></div>
+            </div>
+        
+    </main>
+
+    <!-- Inclua o arquivo JavaScript no final da página -->
+    
+</body>
+</html>

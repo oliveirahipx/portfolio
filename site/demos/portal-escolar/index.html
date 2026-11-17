@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Login.css">
+    <title>Login - Portal Escolar</title>
+    <link rel="stylesheet" href="../faixa.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="js/dados-demo.js"></script>
+    <script src="js/demo.js"></script>
+</head>
+<body class="demo-centro">
+<div class="faixa-demo"><span>Demonstração com dados fictícios. Nada é salvo.</span><a href="../../#p-portal-escolar">Voltar ao portfólio</a></div>
+    <div class="container">
+        <!-- Lado esquerdo (imagem) -->
+        <div class="left-side">
+            <img src="images/marca-portal.svg" alt="Imagem de Fundo">
+        </div>
+
+        <!-- Lado direito (formulário de login) -->
+        <div class="right-side">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form action="#" data-demo="logar" method="POST">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Entrar</button>
+                    </div>
+                    <div class="extra-options">
+                        <a href="cadastro.html">Não tem uma conta? Cadastre-se</a>
+                        <a href="inicio.html">Voltar à Página Inicial</a>
+                    </div>
+                </form>
+                <div class="demo-contas">
+                    <p>Contas de demonstração (senha <code>demo123</code>). Cada cargo vê um menu diferente.</p>
+                    <ul>
+                        <li><button type="button" data-conta="direcao@escola.example"><strong>Direção</strong>direcao@escola.example</button></li>
+                        <li><button type="button" data-conta="professor@escola.example"><strong>Professor</strong>professor@escola.example</button></li>
+                        <li><button type="button" data-conta="aluno@escola.example"><strong>Aluno</strong>aluno@escola.example</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

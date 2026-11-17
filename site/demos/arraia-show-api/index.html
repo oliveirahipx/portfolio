@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arraiá Show API</title>
+  <meta name="description" content="Explorador da Arraiá Show API com um backend simulado no navegador: rotas reais, login com JWT e respostas iguais às do Express com MySQL.">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;1,400&family=Schibsted+Grotesk:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../faixa.css">
+  <link rel="stylesheet" href="explorador.css">
+</head>
+<body>
+  <div class="faixa-demo"><span>Demonstração com dados fictícios. Nada é salvo.</span><a href="../../#p-arraia-show-api">Voltar ao portfólio</a></div>
+
+  <header class="api-topo">
+    <p class="api-topo__tipo">Explorador de API</p>
+    <h1 class="api-topo__titulo">Arraiá Show API</h1>
+    <p class="api-topo__texto">API REST para festas juninas, em Express 5, MySQL e JWT. Aqui as requisições não saem do navegador: um servidor simulado repete a lógica dos controllers do projeto sobre os dados do script <code>bd/Arraiabd.sql</code>, com os mesmos status e mensagens. Ao recarregar a página, tudo volta ao começo.</p>
+    <div class="contas">
+      <p class="contas__titulo">Usuários do script de exemplo. Senha de todos nesta demonstração: <code data-senha-demo></code></p>
+      <ul class="contas__lista" data-contas></ul>
+    </div>
+  </header>
+
+  <main class="api">
+    <nav class="rotas" aria-labelledby="rotas-titulo">
+      <h2 id="rotas-titulo" class="api__h2">Rotas</h2>
+      <p class="rotas__legenda"><span class="cadeado" aria-hidden="true"></span> exige <code>Authorization: Bearer</code></p>
+      <div data-rotas></div>
+    </nav>
+
+    <section class="painel" aria-labelledby="req-titulo">
+      <h2 id="req-titulo" class="api__h2">Requisição</h2>
+      <form class="req" data-form>
+        <div class="req__linha">
+          <label class="rotulo" for="metodo">Método</label>
+          <label class="rotulo" for="caminho">Caminho</label>
+          <select id="metodo" class="campo req__metodo" data-metodo>
+            <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option>
+          </select>
+          <input id="caminho" class="campo req__caminho" data-caminho spellcheck="false" autocomplete="off">
+        </div>
+
+        <div class="req__token">
+          <label class="rotulo" for="token">Token</label>
+          <div class="req__token-linha">
+            <input id="token" class="campo campo--mono" data-token spellcheck="false" autocomplete="off" placeholder="Faça login em /auth/login para receber um token">
+            <label class="marcar"><input type="checkbox" data-enviar-token checked> Enviar no cabeçalho</label>
+          </div>
+        </div>
+
+        <div class="req__corpo" data-bloco-corpo>
+          <label class="rotulo" for="corpo">Corpo (JSON)</label>
+          <textarea id="corpo" class="campo campo--mono req__textarea" data-corpo rows="7" spellcheck="false"></textarea>
+          <p class="aviso-json" data-aviso-json role="alert" hidden></p>
+        </div>
+
+        <div class="req__acoes">
+          <button type="submit" class="botao botao--baixar">Enviar</button>
+          <button type="button" class="botao botao--secundario" data-restaurar>Restaurar dados de exemplo</button>
+          <span class="req__dica">Ctrl + Enter também envia.</span>
+        </div>
+      </form>
+
+      <div class="curl">
+        <div class="curl__cabeca">
+          <h3 class="api__h3">Comando curl equivalente</h3>
+          <button type="button" class="botao-texto" data-copiar>Copiar</button>
+        </div>
+        <pre class="codigo" data-curl></pre>
+      </div>
+
+      <div class="resposta" aria-live="polite">
+        <div class="resposta__cabeca">
+          <h3 class="api__h3">Resposta</h3>
+          <span class="status" data-status>nenhuma requisição ainda</span>
+        </div>
+        <p class="resposta__tipo" data-tipo hidden></p>
+        <pre class="codigo codigo--resposta" data-resposta>Escolha uma rota e clique em Enviar.</pre>
+      </div>
+
+      <details class="tabelas-mem">
+        <summary>Ver as tabelas em memória</summary>
+        <div data-tabelas></div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="api-rodape">
+    <p>Código original: <a href="https://github.com/oliveirahipx/arraia-show-api">github.com/oliveirahipx/arraia-show-api</a>. O comando curl aponta para <code>localhost:3001</code>, onde a API sobe ao rodar o projeto.</p>
+  </footer>
+
+  <script type="module" src="explorador.js"></script>
+</body>
+</html>

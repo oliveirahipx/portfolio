@@ -1,0 +1,6 @@
+node_modules/
+.wrangler/
+.dev.vars
+# build web da demo do HipFinance (gerado a partir de um repositório privado)
+site/demos/hipfinance/app/
+__pycache__/

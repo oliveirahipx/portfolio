@@ -1,0 +1,252 @@
+/* Ajustes da versão de demonstração: o layout original foi feito para telas
+   de 1440px ou mais. Aqui ele se adapta a notebooks e celulares, e o botão de
+   relatório usa a impressão do navegador. */
+
+/* ---------- Estrutura: cabeçalho e menu deixam de ser fixos ---------- */
+body.page-resumo,
+body.page-api,
+body.page-resultados,
+body.page-configuracoes {
+  margin-top: 0;
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+  overflow-x: hidden;
+}
+
+body > header {
+  position: relative;
+  height: 72px;
+  padding: 0 32px;
+}
+body > header .foto-perfil img { width: 40px; height: 40px; }
+
+.layout { min-height: calc(100vh - 72px); }
+.layout > aside { flex: 0 0 260px; }
+.sidebar {
+  position: sticky;
+  top: 48px;
+  width: 260px;
+  min-width: 0;
+  max-width: none;
+}
+.sidebar ul { gap: 18px; margin-top: 24px; }
+.sidebar a { font-size: 1.15rem; gap: 14px; }
+
+.main-resumo,
+.main-api,
+.main-resultados,
+.main-configuracoes {
+  margin-left: 0 !important;
+  width: auto !important;
+  min-width: 0;
+  padding: 28px 32px 48px;
+}
+.main-resumo h1,
+.main-api h1,
+.main-resultados h1,
+.main-configuracoes h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0; }
+
+.resumo-topo,
+.api-topo,
+.resultados-topo,
+.configuracoes-topo { flex-wrap: wrap; gap: 12px; max-width: none !important; }
+
+.btn-baixar,
+.main-api .btn-adicionar {
+  width: auto !important;
+  height: auto !important;
+  min-height: 48px;
+  margin-right: 0 !important;
+  padding: 10px 18px !important;
+  white-space: nowrap;
+}
+
+/* ---------- Cartões ---------- */
+.container-cards-resumo {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-rows: auto !important;
+}
+.card-resumo,
+.card-api,
+.card-resultados {
+  width: auto !important;
+  height: auto !important;
+  min-height: 130px;
+  padding: 24px 28px !important;
+}
+.card-historico {
+  grid-column: 1 / -1 !important;
+  grid-row: auto !important;
+  width: auto !important;
+  min-height: 0;
+}
+.card-historico canvas { max-height: 320px; }
+
+.container-cards-api { display: grid; grid-template-columns: minmax(0, 320px); }
+.container-cards-resultados {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px;
+}
+
+/* ---------- Tabelas ---------- */
+.tabela-resultados,
+.tabela-api {
+  max-width: none !important;
+  padding: 28px !important;
+  overflow-x: auto;
+}
+.tabela-resultados table,
+.tabela-api table { min-width: 640px; }
+.tabela-resultados table td,
+.tabela-api table td { white-space: nowrap; }
+.tabela-resultados table td:first-child,
+.tabela-api table td:first-child,
+.tabela-resultados table td:nth-child(5),
+.tabela-api table td:nth-child(5) { white-space: normal; min-width: 180px; overflow-wrap: anywhere; }
+.tabela-resultados td a { color: #9DB4FF; }
+
+.filtro-api,
+.filtro-resultados { flex-wrap: wrap; }
+
+/* ---------- Login ---------- */
+.aviso-login {
+  margin: 0 0 1.5rem;
+  padding: 10px 14px;
+  border: 1px dashed rgba(255, 209, 0, .6);
+  border-radius: 10px;
+  font-size: 1rem !important;
+}
+.aviso-login::first-letter { text-transform: none !important; }
+.page-login main {
+  min-height: calc(100vh - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+.page-login .container-enter {
+  position: static;
+  transform: none;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  padding: 40px 32px;
+}
+.page-login .content-enter { position: static; transform: none; }
+.page-login form { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.page-login .container-email-senha,
+.page-login .container-check-forgot,
+.page-login .btn-enter { width: 100%; max-width: 500px; }
+.page-login .input-email input,
+.page-login .input-senha input { width: 100%; }
+
+/* ---------- Diálogos ---------- */
+.dialog-adicionar { width: min(720px, calc(100vw - 32px)) !important; max-width: none !important; max-height: calc(100vh - 32px) !important; overflow: auto; }
+.dialog-adicionar textarea { width: 100%; max-width: 100%; }
+.dialog-adicionar .container-btn-add-cancel { flex-wrap: wrap; gap: 12px; }
+.dialog-adicionar .container-btn-add-cancel button { width: auto !important; min-width: 170px; height: auto !important; min-height: 40px; padding: 8px 18px !important; }
+.dialog-adicionar .container-dialog-add { margin-top: 16px !important; gap: 20px !important; }
+.dialog-adicionar .container-text-add { text-align: center; }
+#btn-cadastrar-teste:disabled { opacity: .6; cursor: progress; }
+body.testando { cursor: progress; }
+
+/* ---------- Configurações ---------- */
+.main-configuracoes form > section { max-width: 760px; }
+.main-configuracoes .input-config input { width: 100%; max-width: 500px; }
+/* No HTML original o rótulo vem antes do campo, então o efeito de rótulo
+   flutuante não acontece e o texto ficava por cima do valor. */
+.main-configuracoes .input-config label {
+  position: static;
+  transform: none;
+  display: block;
+  margin: 0 0 6px;
+  padding: 0;
+  color: #cfd8e8;
+  font-size: .95rem;
+}
+
+/* ---------- Telas médias ---------- */
+@media (max-width: 1100px) {
+  .container-cards-resultados { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+/* ---------- Celular: o menu vira uma barra horizontal ---------- */
+@media (max-width: 860px) {
+  body > header { height: 60px; padding: 0 16px; }
+  body > header .logo img { height: 36px; width: auto; }
+  .layout { flex-direction: column; min-height: 0; }
+  .layout > aside { flex: none; }
+  .sidebar {
+    position: static;
+    width: 100%;
+    background: #12294B;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+  }
+  .sidebar ul {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0;
+    padding: 8px 12px;
+  }
+  .sidebar li { width: auto; }
+  .sidebar a {
+    font-size: .95rem;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 8px !important;
+  }
+  .sidebar .mt-auto { margin-top: 0 !important; }
+  .main-resumo,
+  .main-api,
+  .main-resultados,
+  .main-configuracoes { padding: 20px 16px 40px; }
+  .container-cards-resumo { grid-template-columns: minmax(0, 1fr) !important; }
+  .container-cards-api { grid-template-columns: minmax(0, 1fr); }
+  .tabela-resultados,
+  .tabela-api { padding: 18px !important; border-radius: 14px; }
+  .tabela-resultados h2,
+  .tabela-api h2 { font-size: 1.35rem; margin-bottom: 16px; }
+  .card-resumo h2,
+  .card-api h2,
+  .card-resultados h2 { font-size: 1.15rem; }
+  .page-login .container-enter { padding: 28px 18px; }
+  .page-login .container-enter h1 { font-size: 2.4rem; }
+  .page-login .container-enter p { font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .container-cards-resultados { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px; }
+  .container-cards-resultados article { min-height: 96px; padding: 16px 18px !important; }
+  .container-cards-resultados h2 { font-size: 1rem !important; }
+}
+
+/* ---------- Impressão do relatório ---------- */
+.so-impressao { display: none; }
+
+@media print {
+  .faixa-demo,
+  body > header,
+  .layout > aside,
+  .btn-baixar,
+  .btn-adicionar,
+  .filtro-api,
+  .filtro-resultados,
+  .btn-acao,
+  dialog { display: none !important; }
+  body, .main-content, .layout { background: #fff !important; color: #000 !important; }
+  .main-content { padding: 0 !important; }
+  .main-content h1, .main-content h2, .main-content p, .main-content td, .main-content th { color: #000 !important; }
+  .card-resumo, .card-api, .card-resultados, .tabela-resultados, .tabela-api {
+    background: #fff !important;
+    border: 1px solid #999;
+    box-shadow: none !important;
+    min-height: 0;
+  }
+  .tabela-resultados table { min-width: 0; }
+  .tabela-resultados td, .tabela-resultados th { border-color: #bbb !important; }
+  tr { break-inside: avoid; }
+  .so-impressao { display: block; margin-top: 12px; color: #333 !important; font-size: .9rem; }
+}

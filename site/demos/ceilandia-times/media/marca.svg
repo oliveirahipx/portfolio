@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" role="img" aria-label="Ceilândia Times">
+  <g fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round">
+    <rect x="8" y="14" width="52" height="52" rx="4"/>
+    <path d="M18 28 H50 M18 38 H34 M18 48 H34 M18 58 H50"/>
+    <rect x="39" y="36" width="11" height="14"/>
+  </g>
+  <text x="74" y="50" font-family="'Times New Roman', Georgia, serif" font-size="30" font-weight="700" fill="#fff">Ceilândia Times</text>
+</svg>

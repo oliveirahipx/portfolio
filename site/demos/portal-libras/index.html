@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Acadêmico Bilíngue (protótipo)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="libras-video-container" style="display: none;">
+  <video id="libras-video-player" src="" autoplay muted controls></video>
+</div>
+
+<div id="sigaa-wrapper">
+
+  <div id="login-screen">
+    <div class="login-wrap">
+      <div class="login-box">
+        <div class="login-logo">
+          Portal Acadêmico Bilíngue
+          <span>Sistema Integrado de Gestão de Atividades Acadêmicas · Portal Acessível</span>
+        </div>
+
+        <div class="login-mode-toggle">
+          <button class="login-mode-btn active" id="btn-mode-pt" onclick="setLoginMode('pt')">🇧🇷 Português</button>
+          <button class="login-mode-btn" id="btn-mode-libras" onclick="setLoginMode('libras')">🤟 Apenas Sinalizantes (Libras)</button>
+        </div>
+
+        <div class="login-libras-notice" id="libras-notice">
+          🤟 Modo Libras ativado. O portal entrará em modo visual-espacial otimizado para usuários sinalizantes.
+        </div>
+        <div class="login-error" id="login-error">Matrícula ou senha incorretos. Tente novamente.</div>
+
+        <label class="login-label" for="login-matricula">Matrícula</label>
+        <input class="login-input" id="login-matricula" type="text" placeholder="Qualquer valor (demonstração)" autocomplete="username" maxlength="12">
+
+        <label class="login-label" for="login-senha">Senha</label>
+        <input class="login-input" id="login-senha" type="password" placeholder="Qualquer senha (demonstração)" autocomplete="current-password">
+
+        <button class="login-btn" onclick="doLogin()">Entrar na demonstração</button>
+
+        <div class="login-links">
+          <a href="#">Esqueci minha senha</a>
+        </div>
+      </div>
+      <div class="unb-footer-login">Protótipo acadêmico de acessibilidade Libras/Português. Login simulado: nenhum dado é enviado.</div>
+    </div>
+  </div>
+
+  <div id="app">
+
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="topbar-logo">Portal <span style="font-weight:400;font-size:13px">| Bilíngue (protótipo)</span></div>
+          <div class="topbar-sub">Sistema Integrado de Gestão de Atividades Acadêmicas — Portal Acessível Libras/Português</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-time" id="session-time">Sessão: 00:27</span>
+        <span class="mode-badge" id="topbar-mode-badge">🤟 LIBRAS</span>
+        <span class="topbar-user" id="topbar-user">ESTUDANTE EXEMPLO</span>
+        <a href="#" onclick="logout()">Sair</a>
+      </div>
+    </div>
+
+    <div class="navmenu">
+      <div class="navmenu-item" onclick="setPage('inicio')">Início</div>
+      <div class="navmenu-item" onclick="setPage('repositorio')">Repositório de Aulas</div>
+      <div class="navmenu-item" onclick="setPage('trabalhos')">Trabalhos Acadêmicos</div>
+      <div class="navmenu-item" onclick="setPage('grupos')">Grupos de Estudo</div>
+      <div class="navmenu-item" onclick="setPage('painel')">Painel do Professor</div>
+      <div class="navmenu-item active" onclick="setPage('acessibilidade')">Acessibilidade</div>
+    </div>
+
+    <div class="submenu" id="submenu">
+      <span class="submenu-tag">Todos os Cursos</span>
+      <span class="submenu-tag active">Licenciatura em Libras</span>
+      <span class="submenu-tag">Bacharelado</span>
+      <span class="submenu-tag">Extensão</span>
+      <span class="submenu-tag">🤟 Conteúdo em Libras</span>
+    </div>
+
+    <div class="breadcrumb" id="breadcrumb">
+      Portal Bilíngue &rsaquo; <span>Acessibilidade</span>
+    </div>
+
+    <div class="main">
+      <div class="sidebar">
+        <div class="sidebar-title">Menu Principal</div>
+        <div class="sidebar-item" onclick="setPage('inicio')"><span class="sidebar-icon">🏠</span>Início</div>
+        <div class="sidebar-item" onclick="setPage('repositorio')"><span class="sidebar-icon">📚</span>Repositório de Aulas</div>
+        <div class="sidebar-item" onclick="setPage('trabalhos')"><span class="sidebar-icon">📄</span>Trabalhos Acadêmicos</div>
+        <div class="sidebar-item" onclick="setPage('grupos')"><span class="sidebar-icon">👥</span>Grupos de Estudo</div>
+        <div class="sidebar-item" onclick="setPage('painel')"><span class="sidebar-icon">📊</span>Painel do Professor</div>
+        <div class="sidebar-sep"></div>
+        <div class="sidebar-title">Acessibilidade</div>
+        <div class="sidebar-item" onclick="setPage('acessibilidade')"><span class="sidebar-icon">🤟</span>Config. Libras</div>
+        <div class="sidebar-item" onclick="changeFontSize()"><span class="sidebar-icon">🔠</span>Tamanho do Texto</div>
+        <div class="sidebar-item" onclick="toggleContrast()"><span class="sidebar-icon">🎨</span>Alto Contraste</div>
+        <div class="sidebar-item" onclick="setPage('manual')"><span class="sidebar-icon">📖</span>Manual</div>
+        <div class="sidebar-sep"></div>
+        <div class="sidebar-title">Suporte</div>
+        <div class="sidebar-item"><span class="sidebar-icon">💬</span>Intérprete Online</div>
+        <div class="sidebar-item"><span class="sidebar-icon">❓</span>Ajuda em Libras</div>
+      </div>
+
+      <div class="content" id="content">
+
+        <div id="pg-inicio" style="display:none">
+          <div class="page-title">
+            <span>Portal Bilíngue Libras/Português <span class="tag-libras">LIBRAS</span></span>
+            <span class="page-title-sub">Protótipo de acesso inclusivo</span>
+          </div>
+          <div class="panel">
+            <div class="panel-body">
+              <div class="alert-box">🤟 Bem-vindo(a), <strong id="welcome-name">Estudante</strong>! Todos os conteúdos estão disponíveis em Libras e Português. Navegue pelas seções para receber instruções traduzidas automaticamente.</div>
+              <div class="stat-row">
+                <div class="stat-box"><div class="stat-icon">📚</div><div class="stat-num">348</div><div class="stat-label">Aulas em Libras</div></div>
+                <div class="stat-box"><div class="stat-icon">📄</div><div class="stat-num">127</div><div class="stat-label">TCCs Bilíngues</div></div>
+                <div class="stat-box"><div class="stat-icon">👥</div><div class="stat-num">24</div><div class="stat-label">Grupos Ativos</div></div>
+                <div class="stat-box"><div class="stat-icon">🎓</div><div class="stat-num">89%</div><div class="stat-label">Taxa de Permanência</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cards-grid">
+            <div class="card" onclick="setPage('repositorio')">
+              <div class="card-header" style="background:var(--sigaa-blue2)">📚 Repositório de Aulas</div>
+              <div class="card-body">Acesse vídeos em Libras, legendas, transcrições e materiais visuais. Múltiplos formatos para sua forma de aprendizagem.</div>
+              <div class="card-footer"><span class="badge badge-libras">Libras + PT</span><span style="color:var(--sigaa-mid);cursor:pointer">Acessar →</span></div>
+            </div>
+            <div class="card" onclick="setPage('trabalhos')">
+              <div class="card-header" style="background:var(--sigaa-green)">📄 Trabalhos Acadêmicos</div>
+              <div class="card-body">Publique e acesse TCCs e artigos em formato bilíngue. Submeta vídeos em Libras junto ao texto em português.</div>
+              <div class="card-footer"><span class="badge badge-green">Publicação Bilíngue</span><span style="color:var(--sigaa-mid);cursor:pointer">Acessar →</span></div>
+            </div>
+            <div class="card" onclick="setPage('grupos')">
+              <div class="card-header" style="background:#6a1b9a">👥 Grupos de Estudo</div>
+              <div class="card-body">Colabore com colegas em grupos com ferramentas visuais-espaciais, chat visual e videoconferência em Libras.</div>
+              <div class="card-footer"><span class="badge badge-blue">Visual-Espacial</span><span style="color:var(--sigaa-mid);cursor:pointer">Acessar →</span></div>
+            </div>
+          </div>
+
+          <div style="height:14px"></div>
+          <div class="panel">
+            <div class="panel-header">📅 Minhas Atividades Recentes</div>
+            <div class="panel-body-sm">
+              <table class="table-sigaa">
+                <thead><tr><th>Disciplina</th><th>Atividade</th><th>Formato</th><th>Prazo</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Libras I</td><td>Aula 5 — Verbos em Libras</td><td><span class="badge badge-libras">Vídeo Libras</span></td><td>28/04</td><td><span class="badge badge-green">Disponível</span></td></tr>
+                  <tr><td>Linguística</td><td>Texto: Gramática Visual</td><td><span class="badge badge-blue">Legenda PT</span></td><td>30/04</td><td><span class="badge badge-orange">Pendente</span></td></tr>
+                  <tr><td>TCC Bilíngue</td><td>Entrega parcial — Cap. 2</td><td><span class="badge badge-libras">Libras + PT</span></td><td>05/05</td><td><span class="badge badge-orange">Em andamento</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="pg-repositorio" style="display:none">
+          <div class="page-title">
+            <span>📚 Repositório de Aulas <span class="tag-libras">LIBRAS</span></span>
+            <span class="page-title-sub">Vídeos em Libras · Legendas · Transcrições · Imagens Descritivas</span>
+          </div>
+          <div class="panel">
+            <div class="panel-body">
+              <div class="search-row">
+                <input class="input-sigaa" style="flex:1" placeholder="🔍  Buscar aulas por nome, disciplina ou conteúdo em Libras..." />
+                <button class="btn btn-blue">Buscar</button>
+                <button class="btn-libras">🤟 Buscar em Libras</button>
+              </div>
+              <div style="font-size:11px;color:#666;margin-bottom:6px">Filtrar por formato disponível:</div>
+              <div class="format-chips">
+                <span class="format-chip chip-libras">🤟 Vídeo em Libras</span>
+                <span class="format-chip chip-leg">📝 Legenda em Português</span>
+                <span class="format-chip chip-txt">📃 Transcrição</span>
+                <span class="format-chip chip-img">🖼 Imagens Descritivas</span>
+                <span class="format-chip chip-libras">🎬 Animações</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabbar">
+            <div class="tab active">Todos os Formatos</div>
+            <div class="tab">🤟 Apenas Libras</div>
+            <div class="tab">Disciplinas</div>
+            <div class="tab">Mais Acessados</div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">📚 Aulas Disponíveis — Libras I</div>
+            <div class="panel-body-sm">
+              <div class="repo-item">
+                <div class="video-thumb" onclick="openVideoModal('https://www.youtube.com/embed/_1eMvRa85Pc', 'Aula 5 — Verbos em Libras')">▶</div>
+                <div style="flex:1">
+                  <div style="font-weight:700;font-size:13px">Aula 5 — Verbos em Libras: Concordância e Direcionalidade</div>
+                  <div class="repo-meta">Prof.ª Ana Lima · 38 min · Atualizado em 22/04/2026</div>
+                  <div class="format-chips" style="margin:4px 0">
+                    <span class="format-chip chip-libras">🤟 Libras Nativa</span>
+                    <span class="format-chip chip-leg">📝 Legenda PT</span>
+                    <span class="format-chip chip-txt">📃 Transcrição</span>
+                    <span class="format-chip chip-img">🖼 Imagens</span>
+                  </div>
+                  <div style="font-size:11px;color:#888">Acessibilidade: <strong style="color:var(--sigaa-green)">100% WCAG AAA</strong></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:5px;min-width:80px">
+                  <button class="btn btn-blue btn-sm" onclick="openVideoModal('https://www.youtube.com/embed/_1eMvRa85Pc', 'Aula 5 — Verbos')">▶ Assistir</button>
+                  <button class="btn btn-gray btn-sm">📥 Baixar</button>
+                </div>
+              </div>
+
+              <div class="repo-item">
+                <div class="video-thumb" style="background:var(--sigaa-green)" onclick="openVideoModal('https://www.youtube.com/embed/KJCwfe_imaU', 'Aula 4 — Classificadores')">▶</div>
+                <div style="flex:1">
+                  <div style="font-weight:700;font-size:13px">Aula 4 — Classificadores: Representação Visual no Espaço</div>
+                  <div class="repo-meta">Prof. Carlos Souza · 42 min · Atualizado em 15/04/2026</div>
+                  <div class="format-chips" style="margin:4px 0">
+                    <span class="format-chip chip-libras">🤟 Libras Nativa</span>
+                    <span class="format-chip chip-leg">📝 Legenda PT</span>
+                    <span class="format-chip chip-img">🖼 Imagens</span>
+                  </div>
+                  <div style="font-size:11px;color:#888">Acessibilidade: <strong style="color:var(--sigaa-green)">WCAG AAA</strong></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:5px;min-width:80px">
+                  <button class="btn btn-blue btn-sm" onclick="openVideoModal('https://www.youtube.com/embed/KJCwfe_imaU', 'Aula 4')">▶ Assistir</button>
+                  <button class="btn btn-gray btn-sm">📥 Baixar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pg-trabalhos" style="display:none">
+          <div class="page-title">
+            <span>📄 Trabalhos Acadêmicos Bilíngues <span class="tag-libras">LIBRAS</span></span>
+            <span class="page-title-sub">TCCs e Artigos em Português + Libras</span>
+          </div>
+
+          <div class="panel">
+            <div class="panel-body">
+              <div class="alert-box alert-info">📢 Publique seu TCC em formato bilíngue: envie o texto em português e o vídeo em Libras. Seu trabalho ficará acessível para toda a comunidade surda.</div>
+              <div style="display:flex;gap:8px">
+                <button class="btn btn-green">+ Submeter Trabalho Bilíngue</button>
+                <button class="btn-libras">🤟 Instruções em Libras</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="page-title" style="border-radius:4px 4px 0 0;margin-bottom:0">
+            <span>🎬 TCCs em Vídeo — Apresentações Reais <span class="tag-libras">LIBRAS</span></span>
+            <span class="page-title-sub">Gravações oficiais de defesas de TCC com interpretação em Libras</span>
+          </div>
+          <div class="panel" style="border-radius:0 0 4px 4px">
+            <div class="panel-body">
+              <div class="tcc-videos-grid">
+                <div class="tcc-video-card">
+                  <iframe class="tcc-video-embed" src="" title="Defesa de TCC" allowfullscreen></iframe>
+                  <div class="tcc-video-info">
+                    <div class="tcc-video-title">Defesa de TCC — Área de Libras e Educação Inclusiva</div>
+                    <div class="tcc-video-meta">Transmissão ao vivo</div>
+                    <div class="tcc-video-badges">
+                      <span class="badge badge-libras">🤟 Libras</span>
+                      <span class="badge badge-blue">Defesa Pública</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pg-grupos" style="display:none">
+          <div class="page-title">
+            <span>👥 Grupos de Estudo <span class="tag-libras">LIBRAS</span></span>
+            <span class="page-title-sub">Comunicação Visual-Espacial e Videoconferências</span>
+          </div>
+          <div class="panel">
+            <div class="panel-body">
+              <div class="alert-box alert-info">Acesse as salas virtuais exclusivas para discussões e desenvolvimento de pesquisas e revisões acadêmicas em Libras.</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pg-painel" style="display:none">
+          <div class="page-title"><span>📊 Painel do Professor <span class="tag-libras">LIBRAS</span></span></div>
+        </div>
+
+        <div id="pg-acessibilidade" style="display:none">
+          <div class="page-title">
+            <span>🤟 Configurações de Acessibilidade <span class="tag-libras">LIBRAS</span></span>
+            <span class="page-title-sub">Personalize sua experiência de acordo com suas necessidades</span>
+          </div>
+          
+          <div class="panel">
+            <div class="panel-body">
+              <div class="alert-box alert-success-light">Todas as configurações são salvas automaticamente no seu perfil.</div>
+              
+              <div class="libras-box-container">
+                <div class="libras-box-title">🤟 Modo Apenas Sinalizantes (Libras)</div>
+                <div class="libras-box-desc">Ativa layout otimizado para usuários sinalizantes: vídeos maiores, menos texto, interface mais visual.</div>
+                <button class="btn btn-dark-blue" id="libras-mode-btn" onclick="toggleLibrasMode()">Desativar Modo Libras</button>
+              </div>
+
+              <div class="config-grid-layout">
+                <div class="config-col">
+                  <div class="config-section-title">🤟 Língua de Sinais</div>
+                  
+                  <div class="form-group-sigaa">
+                    <label class="label-sigaa">Tradução de Interface por Vídeo</label>
+                    <select class="input-sigaa" id="select-vlibras" onchange="handleVideoControlSelect(this.value)">
+                      <option value="ativado">Ativado (Player Guia de Libras)</option>
+                      <option value="desativado">Desativado</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group-sigaa">
+                    <label class="label-sigaa">Posição do player de Libras</label>
+                    <select class="input-sigaa" id="select-posicao" onchange="changeVideoPosition(this.value)">
+                      <option value="inferior-direito">Inferior direito</option>
+                      <option value="inferior-esquerdo">Inferior esquerdo</option>
+                      <option value="superior-direito">Superior direito</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="config-col">
+                  <div class="config-section-title">🔤 Texto e Exibição</div>
+                  
+                  <div class="form-group-sigaa">
+                    <label class="label-sigaa">Tamanho da fonte</label>
+                    <select class="input-sigaa" id="select-fonte" onchange="applyFontSize(this.value)">
+                      <option value="14">Médio (padrão)</option>
+                      <option value="16">Grande</option>
+                      <option value="18">Muito grande</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group-sigaa">
+                    <label class="label-sigaa">Contraste</label>
+                    <select class="input-sigaa" id="select-contraste" onchange="applyContrast(this.value)">
+                      <option value="normal">Normal</option>
+                      <option value="high">Alto contraste</option>
+                      <option value="dark">Escuro</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pg-manual" style="display:none">
+          <div class="page-title">
+            <span>📖 Manual do Usuário — Portal Bilíngue <span class="tag-libras">LIBRAS</span></span>
+            <span class="page-title-sub">Guia completo de navegação e recursos de acessibilidade</span>
+          </div>
+          
+          <div class="panel">
+            <div class="panel-body manual-text-area">
+              <h2>1. Sobre o Portal Bilíngue</h2>
+              <p>O Portal Bilíngue foi projetado para garantir acessibilidade integral a alunos surdos, sinalizantes e demais usuários da comunidade acadêmica. Todo o ecossistema opera de maneira visual-espacial seguindo os parâmetros normativos da WCAG AAA.</p>
+              
+              <div class="manual-divider"></div>
+
+              <h2>2. Recursos de Acessibilidade Autônomos</h2>
+              <ul>
+                <li><strong>Guia de Vídeo em Libras:</strong> Ao navegar pelas abas principais como <em>Início</em> ou <em>Grupos de Estudo</em>, um player guia flutuante se abrirá no canto da tela executando a tradução em sinais das funções contidas na área ativa. O player se encerra e oculta-se sozinho ao fim da sinalização.</li>
+                <li><strong>Modo Apenas Sinalizantes (Libras):</strong> Quando ativado, reorganiza os componentes do painel reduzindo blocos densos de textos e expandindo os repositórios visuais e cards de vídeo.</li>
+                <li><strong>Ajustes de Exibição:</strong> No menu de acessibilidade é possível redimensionar a fonte para escalas maiores ou acionar o Alto Contraste/Modo Noturno instantaneamente.</li>
+              </ul>
+
+              <div class="manual-divider"></div>
+
+              <h2>3. Estrutura do Menu e Funcionalidades</h2>
+              <table class="table-sigaa text-left-header">
+                <thead>
+                  <tr>
+                    <th>Módulo</th>
+                    <th>Descrição Operacional</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Início</strong></td>
+                    <td>Painel centralizador contendo informativos acadêmicos, estatísticas e listagem das turmas virtuais vigentes do semestre.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Repositório de Aulas</strong></td>
+                    <td>Base de dados de vídeos didáticos em Libras, acompanhados de legendas síncronas, transcrições textuais e descrições imagéticas.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Trabalhos Acadêmicos</strong></td>
+                    <td>Módulo de submissão bimodal e arquivo de defesas públicas de monografias e TCCs com tradução simultânea.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Grupos de Estudo</strong></td>
+                    <td>Ambiente de interação colaborativa e agendamento de videoconferências sinalizadas.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      Protótipo acadêmico de portal bilíngue Libras/Português. Dados e números ilustrativos.
+    </footer>
+  </div>
+
+</div>
+
+<div class="modal-bg" id="video-modal" style="display:none" onclick="closeModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <span id="modal-title">🎬 Vídeo</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <iframe class="modal-video" id="modal-iframe" src="" title="Vídeo" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

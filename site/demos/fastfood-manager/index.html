@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FastFood Manager · telas do programa</title>
+  <meta name="description" content="Capturas reais do FastFood Manager, programa de desktop em Java Swing com SQLite: login, cardápio e pedidos.">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;1,400&family=Schibsted+Grotesk:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../galeria.css">
+  <link rel="stylesheet" href="../faixa.css">
+</head>
+<body>
+  <div class="faixa-demo"><span>Demonstração. Nada é salvo no servidor.</span><a href="../../#p-fastfood-manager">Voltar ao portfólio</a></div>
+
+  <header class="demo-topo">
+    <p class="demo-topo__nome">fastfood-manager</p>
+    <h1>FastFood Manager</h1>
+    <p class="demo-topo__resumo">Programa de desktop para lanchonete, em Java com Swing. Tem login com senha protegida por hash, cardápio de lanches e bebidas e registro de pedidos, tudo gravado num banco SQLite que o próprio programa cria.</p>
+    <div class="acoes">
+      <a class="botao botao--baixar" href="https://github.com/oliveirahipx/fastfood-manager/releases/download/v1.0.0/fastfood-manager-1.0.0.jar">Baixar o .jar (v1.0.0)</a>
+      <a class="botao botao--secundario" href="https://github.com/oliveirahipx/fastfood-manager">Código no GitHub</a>
+      <p class="acoes__nota">Java 8 ou mais novo. Não precisa instalar banco: o arquivo SQLite é criado na primeira execução.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="secao" aria-labelledby="executar-titulo">
+      <h2 id="executar-titulo">Como executar</h2>
+      <ol class="execucao">
+        <li>Confira se o Java está instalado com <code>java -version</code> (8 ou mais novo).</li>
+        <li>Baixe o <code>fastfood-manager-1.0.0.jar</code> pelo botão acima.</li>
+        <li>Abra com dois cliques ou pelo terminal:
+          <pre class="comando">java -jar fastfood-manager-1.0.0.jar</pre>
+        </li>
+        <li>Na primeira tela, clique em <strong>Criar conta</strong>, cadastre um usuário e entre com ele.</li>
+      </ol>
+      <p>O banco fica em <code>~/.fastfood-manager/fastfood.db</code> (no Windows, <code>C:\Users\&lt;usuário&gt;\.fastfood-manager\fastfood.db</code>). Para usar outro arquivo: <code>java -Dfastfood.db=meu-banco.db -jar fastfood-manager-1.0.0.jar</code>.</p>
+    </section>
+
+    <section class="secao" aria-labelledby="passos-titulo">
+      <h2 id="passos-titulo">Passo a passo</h2>
+      <p>Capturas do jar da versão 1.0.0 rodando no Windows, com dados de exemplo.</p>
+
+      <figure class="fluxo">
+        <img src="img/fluxo.webp" width="760" height="620" alt="Animação curta passando pelas telas: login, menu, cadastro de produto, cardápio, novo pedido e lista de pedidos." loading="lazy">
+        <figcaption>O fluxo completo em poucos segundos.</figcaption>
+      </figure>
+
+      <ol class="passos">
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/01-login.webp" width="326" height="512" alt="Janela de login com o logotipo da lanchonete, campos de e-mail e senha e os botões Entrar e Criar conta." loading="lazy"></div>
+            <figcaption>Login por e-mail e senha. A senha é conferida contra um hash PBKDF2 com salt.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/02-criar-conta.webp" width="258" height="310" alt="Janela Cadastro com os campos nome, e-mail e senha preenchidos." loading="lazy"></div>
+            <figcaption>Criar conta abre uma janela modal com nome, e-mail e senha. E-mail repetido é recusado.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/03-menu.webp" width="431" height="515" alt="Menu principal com saudação ao usuário e botões para cadastrar, listar, buscar e remover produtos, novo pedido, listar pedidos e sair." loading="lazy"></div>
+            <figcaption>Menu principal, com saudação ao usuário logado e todas as operações.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/04-produto-nome.webp" width="326" height="154" alt="Caixa de diálogo pedindo o nome do produto, preenchida com X-Burger da Casa." loading="lazy"></div>
+            <figcaption>Cadastrar produto: primeiro o nome.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/05-produto-preco.webp" width="326" height="154" alt="Caixa de diálogo pedindo o preço, preenchida com 24,90." loading="lazy"></div>
+            <figcaption>Depois o preço. Aceita vírgula ou ponto e pede de novo se o valor for inválido.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/06-produto-tipo.webp" width="326" height="149" alt="Caixa de diálogo perguntando o tipo do produto, com os botões Lanche e Bebida." loading="lazy"></div>
+            <figcaption>O tipo define a subclasse: lanche (vegano ou não) ou bebida (alcoólica ou não).</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/08-cardapio.webp" width="481" height="473" alt="Janela Cardápio listando seis produtos com número, tipo, nome e preço." loading="lazy"></div>
+            <figcaption>Listar produtos mostra o cardápio vindo do banco, com o tipo de cada item.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/09-novo-pedido.webp" width="448" height="320" alt="Janela Novo pedido com a lista de produtos e três itens selecionados." loading="lazy"></div>
+            <figcaption>Novo pedido: seleciona vários itens da lista com Ctrl + clique.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/10-pedido-registrado.webp" width="326" height="149" alt="Mensagem Pedido registrado com o total em reais." loading="lazy"></div>
+            <figcaption>O pedido é gravado com os itens e o total calculado.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/11-pedidos.webp" width="481" height="473" alt="Janela Pedidos listando dois pedidos com data, total e os itens de cada um." loading="lazy"></div>
+            <figcaption>Listar pedidos traz cada pedido com data, total e itens.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/12-remover-bloqueado.webp" width="523" height="149" alt="Mensagem de erro dizendo que o produto não pode ser removido porque já faz parte de um pedido." loading="lazy"></div>
+            <figcaption>Um produto que já está em algum pedido não pode ser removido: a chave estrangeira no banco impede.</figcaption>
+          </figure>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p><a href="../../#p-fastfood-manager">Voltar ao portfólio</a> · <a href="https://github.com/oliveirahipx/fastfood-manager">Código no GitHub</a></p>
+  </footer>
+</body>
+</html>

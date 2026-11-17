@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Escolar Cem 09</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../faixa.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="js/dados-demo.js"></script>
+    <script src="js/demo.js"></script>
+</head>
+<body>
+<div class="faixa-demo"><span>Demonstração com dados fictícios. Nada é salvo.</span><a href="../../#p-portal-escolar">Voltar ao portfólio</a></div>
+<header>
+    <nav class="navbar">
+        <div class="logo" onclick="toggleLeftSidebar()">
+            <img src="images/avatar-5.svg" alt="Imagem de Perfil" class="profile-img">
+        </div>
+        <div class="menu">
+            <span class="menu-toggle" onclick="openRightSidebar()">&#9776; Menu</span>
+
+        </div>
+    </nav>
+</header>
+
+    <!-- Right Sidebar -->
+    <div id="rightSidebar" class="sidebar">
+        <a href="javascript:void(0)" onclick="closeRightSidebar()">&#10005; Fechar</a>
+        <h3>Notícias Recentes</h3>
+        <div class="news-quick-view">
+            <a href="#" onclick="showNews(1); return false;" >Pas 3</a>
+            <a href="#" onclick="showNews(2); return false;">Devolução dos livros</a>
+            <a href="#" onclick="showNews(3); return false;">Matriculas Abertas</a>
+    </div>
+
+    <!-- Left Sidebar for News Quick View -->
+    <div id="leftSidebar" class="sidebar">
+        <a href="javascript:void(0)" onclick="closeLeftSidebar()">&#10005; Fechar</a>
+        
+            <a href="perfil-aluno.html">Perfil</a>
+            
+            
+            
+                <a href="notas-aluno.html">Minhas Notas</a>
+                <a href="#" data-demo-ausente>Eventos</a>
+            
+            <a href="index.html">Logout</a>
+        
+
+        </div>
+    </div>
+
+    <main id="mainContent">
+        <h1>Bem-vindo ao Portal Escolar Do Centro de ensino Médio 09</h1>
+        <p>Seja muito bem vindo ao portal escolar do Cem09</p>
+    
+        <div class="news-section">
+            <div class="news-item">
+                <a href="#" onclick="showNews(1); return false;">
+                    <img src="https://res.cloudinary.com/duslicdkg/image/upload/v1732756548/Images/download_z3qz8u.png" alt="Notícia 1">
+                    <h3>Pas 3</h3>
+                    <p>A tão sonhada terceira edição do pas para os alunos que estão cursando o 3º ano do ensino médio está chegando. Saiba mais...</p>
+                </a>
+            </div>
+            <div class="news-item">
+                <a href="#" onclick="showNews(2); return false;">
+                    <img src="https://res.cloudinary.com/duslicdkg/image/upload/v1732756961/Images/livros_jjxayo.jpg" alt="Notícia 2">
+                    <h3>Devolução dos livros</h3>
+                    <p>Devolução obrigatória de livros para alunos do CEM 09. Saiba mais...</p>
+                </a>
+            </div>
+            <div class="news-item">
+                <a href="#" onclick="showNews(3); return false;">
+                    <img src="images/matriculas.svg" alt="Notícia 3">
+                    <h3>Matrículas abertas para 2025</h3>
+                    <p>O CEM 09 está com matrículas abertas para 2025. Confira:</p>
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <div id="newsContent" style="display: none;">
+        <button onclick="hideNews()">Voltar</button>
+        <div id="newsDetails"></div>
+    </div>
+    
+
+    <script>
+        function openRightSidebar() {
+    const sidebar = document.getElementById("rightSidebar");
+    sidebar.classList.add("open"); // Adiciona a classe para abrir o sidebar
+}
+
+function closeRightSidebar() {
+    const sidebar = document.getElementById("rightSidebar");
+    sidebar.classList.remove("open"); // Remove a classe para fechar o sidebar
+}
+
+
+        function toggleLeftSidebar() {
+            const leftSidebar = document.getElementById("leftSidebar");
+            leftSidebar.style.width = leftSidebar.style.width === "250px" ? "0" : "250px";
+        }
+
+        function closeLeftSidebar() {
+            document.getElementById("leftSidebar").style.width = "0";
+        }
+    </script>
+    <script src="js/indexfront.js"></script>
+</body>
+</html>

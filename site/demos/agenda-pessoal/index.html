@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Pessoal Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <button id="menuToggle" aria-expanded="false" aria-controls="projectsMenu" class="menu-btn">☰</button>
+            <h1>Agenda Pessoal</h1>
+        </div>
+        <nav id="projectsMenu" class="projects-menu" aria-hidden="true">
+            <h3>Meus Projetos</h3>
+            <ul id="projectsList"></ul>
+            <form id="projectForm">
+                <input type="text" id="projectText" placeholder="Novo projeto" required>
+                <button type="submit">Adicionar</button>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        <section id="calendarContainer">
+            <div id="calendarHeader">
+                <button id="prevMonth" title="Mês anterior">‹</button>
+                <h2 id="monthYear"></h2>
+                <button id="nextMonth" title="Próximo mês">›</button>
+            </div>
+            <table id="calendar">
+                <thead>
+                    <tr>
+                        <th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <div id="eventModal" class="modal" aria-hidden="true">
+            <div class="modal-content">
+                <button class="close-btn" id="closeModal" aria-label="Fechar">&times;</button>
+                <h3 id="modalDate"></h3>
+                <div id="eventListContainer">
+                    <ul id="eventList"></ul>
+                </div>
+                <form id="eventForm">
+                    <input type="text" id="eventText" placeholder="O que temos para hoje?" required maxlength="50">
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="agenda.js"></script>
+</body>
+</html>

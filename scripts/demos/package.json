@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-demos",
+  "private": true,
+  "description": "Gera as páginas estáticas das demos a partir dos templates EJS dos projetos originais",
+  "type": "module",
+  "scripts": {
+    "gerar": "node gerar.mjs"
+  },
+  "dependencies": {
+    "ejs": "3.1.10"
+  }
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fatorial em RISC-V, passo a passo</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:wght@400;600&family=Schibsted+Grotesk:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="riscv.css">
+</head>
+<body>
+  <div class="demo">
+    <p class="voltar"><a href="../../#p-riscv">Voltar ao portfólio</a></p>
+    <h1>Fatorial em RISC-V, passo a passo</h1>
+    <p class="intro">Este é o programa do trabalho de Arquitetura de Computadores rodando num interpretador RV32IM escrito para esta página. As instruções e os endereços são os mesmos do RARS. Digite um número, avance uma instrução por vez e acompanhe o laço <code>while</code>, o <code>if</code> e a recursão mexendo nos registradores e na pilha.</p>
+
+    <div class="controles">
+      <button type="button" class="botao botao--baixar" data-passo>Próxima instrução</button>
+      <button type="button" class="botao botao--secundario" data-ate-fim>Executar até o fim</button>
+      <button type="button" class="botao botao--secundario" data-reiniciar>Recomeçar</button>
+      <span class="contador" data-contador aria-live="polite">0 instruções executadas</span>
+    </div>
+
+    <div class="painel">
+      <section class="bloco bloco--codigo" aria-labelledby="t-codigo">
+        <h2 id="t-codigo">Código-fonte</h2>
+        <ol class="fonte" data-fonte></ol>
+      </section>
+
+      <div class="lado">
+        <section class="bloco" aria-labelledby="t-console">
+          <h2 id="t-console">Console</h2>
+          <pre class="console" data-console></pre>
+          <form class="entrada" data-entrada hidden>
+            <label for="numero">O programa está esperando um inteiro (ecall 5)</label>
+            <div class="entrada__linha">
+              <input id="numero" type="number" inputmode="numeric" step="1" value="5" required>
+              <button type="submit" class="botao botao--baixar">Enviar</button>
+            </div>
+            <p class="entrada__dica">Tente um negativo para ver o laço de validação; acima de 12 o resultado estoura 32 bits, como no RARS.</p>
+          </form>
+        </section>
+
+        <section class="bloco" aria-labelledby="t-instr">
+          <h2 id="t-instr">Instrução atual</h2>
+          <p class="instr"><span class="instr__pc" data-pc></span> <code data-basica></code></p>
+        </section>
+
+        <section class="bloco" aria-labelledby="t-regs">
+          <h2 id="t-regs">Registradores</h2>
+          <table class="regs" data-regs></table>
+        </section>
+
+        <section class="bloco" aria-labelledby="t-pilha">
+          <h2 id="t-pilha">Pilha</h2>
+          <table class="pilha" data-pilha></table>
+          <p class="vazio" data-pilha-vazia>Vazia. Cada chamada de <code>fatorial</code> empilha 8 bytes: <code>ra</code> e <code>n</code>.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="riscv.js"></script>
+</body>
+</html>

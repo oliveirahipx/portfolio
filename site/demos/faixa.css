@@ -1,0 +1,9 @@
+/* Faixa fixa no topo das demos: avisa que é demonstração e leva de volta ao portfólio. */
+.faixa-demo {
+  position: sticky; top: 0; z-index: 2147483000;
+  display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; justify-content: space-between;
+  padding: 8px 16px; background: #16213A; color: #E6ECF7;
+  font: 400 14px/1.4 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+}
+.faixa-demo a { color: #9DB4FF; font-weight: 600; text-underline-offset: .18em; }
+.faixa-demo a:focus-visible { outline: 3px solid #9DB4FF; outline-offset: 2px; }

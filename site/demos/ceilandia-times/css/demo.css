@@ -1,0 +1,97 @@
+/* Ajustes da versão estática. O CSS original do projeto vem antes e não muda.
+   Cada página ganha uma classe no <body> (demo-inicio, demo-noticias,
+   demo-login, demo-perfil) para os ajustes não vazarem de uma para outra. */
+
+#demo-aviso {
+  position: fixed; left: 50%; bottom: 24px; z-index: 2147483001;
+  transform: translate(-50%, 16px); opacity: 0; pointer-events: none;
+  max-width: min(440px, calc(100vw - 32px));
+  padding: 12px 16px; border-radius: 4px;
+  background: #2b1a14; color: #f3e9d8;
+  font: italic 400 16px/1.4 'Times New Roman', serif; text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
+  transition: opacity .2s, transform .2s;
+}
+#demo-aviso.visivel { opacity: 1; transform: translate(-50%, 0); }
+
+/* O link da faixa não deve herdar o estilo de botão que o login.css dá a todo <a>. */
+.faixa-demo a {
+  padding: 0 !important; border-radius: 0 !important; background: none !important;
+  color: #9DB4FF !important; text-decoration: underline !important;
+}
+
+/* ---------- Início e notícias ---------- */
+.demo-inicio, .demo-noticias { overflow-x: hidden; }
+
+/* No template da página inicial, a coluna da comunidade ficou dividida em
+   três blocos irmãos da coluna de notícias (um <main> aninhado e um <div>
+   sem fechar). Esta grade só por CSS põe os três na segunda coluna, como era
+   a intenção, sem mexer no HTML. */
+.demo-inicio > main {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto auto 1fr; column-gap: 6%; align-items: start; width: min(1100px, 86%); box-sizing: border-box;
+}
+.demo-inicio > main > .noticiasSection { grid-column: 1; grid-row: 1 / span 4; }
+.demo-inicio > main > .comunidadeSection,
+.demo-inicio > main > .postsDaComunidadeMain,
+.demo-inicio > main > .buttonContainer { grid-column: 2; }
+.demo-inicio > main > .postsDaComunidadeMain { display: block; width: auto; margin: 0; padding: 0; }
+.demo-inicio .comunidadeSection header,
+.demo-inicio .comunidadeSection header img,
+.demo-inicio .comunidadeSection header p,
+.demo-inicio .comunidadeSection .orderPosts { width: 100%; max-width: 100%; }
+.demo-inicio .comunidadeSection header img { margin-top: 8px; }
+.demo-inicio .orderBySelect { max-width: 100%; }
+
+/* Ícones locais no lugar das imagens de /media, que nunca foram ao repositório.
+   Coluna de reações estreita, com ícones pequenos. */
+.demo-inicio .userPostBody { align-items: flex-start; }
+.demo-inicio .postReactions { position: relative; flex: none; width: 44px; margin: 0 14px 0 4px; padding: 0 0 8px; }
+.demo-inicio .postReactions img { width: 24px; margin-top: 10px; }
+.demo-inicio .userImage { flex: none; width: 70px; }
+.demo-inicio .userImage img { width: 52px; aspect-ratio: 1; object-fit: cover; }
+.demo-inicio .userInfoText p { margin-left: 0; }
+
+/* Janela de comentários: o projeto não chegou a ter CSS nem script para ela. */
+.demo-inicio .commentsWindow {
+  display: none; position: absolute; left: 52px; top: 0; z-index: 5;
+  width: min(320px, 70vw); padding: 10px 14px 14px; text-align: left;
+  background: #e9dfcf; border: 1px solid #390606; box-shadow: 4px 4px 0 rgba(57, 6, 6, .25);
+}
+.demo-inicio .commentsWindow h3 { margin: 4px 0 6px; }
+.demo-inicio .commentsWindow .postReactions { display: none; }
+.demo-inicio .closeCommentsWindow { display: block; float: right; width: 18px; margin: 0; filter: none; cursor: pointer; }
+.demo-inicio .commentBlock .userInfo { margin-top: 10px; }
+.demo-inicio .commentBlock .userPostBody p { margin-left: 0; }
+
+@media only screen and (max-width: 900px) {
+  .demo-inicio > main, .demo-noticias > main { width: 100%; padding: 20px 16px; box-sizing: border-box; }
+  .demo-inicio > main { grid-template-columns: minmax(0, 1fr); }
+  .demo-inicio > main > * { grid-column: 1 !important; grid-row: auto !important; }
+  .demo-inicio > header .headerMenu, .demo-noticias > header .headerMenu { margin-right: 0; }
+  .demo-inicio .headerMiddle, .demo-noticias .headerMiddle { width: 100%; }
+  .demo-inicio .noticiasSection header, .demo-noticias .noticiasSection header { width: 100%; }
+  .demo-inicio .noticiasSection header p, .demo-noticias .noticiasSection header p { width: auto; }
+}
+
+/* ---------- Login ---------- */
+.demo-login .wpp img, .demo-login .email-contato img { width: 16px; height: 16px; margin-right: 6px; }
+/* No original os botões Registrar e Entrar ficam por cima do campo de senha
+   (posição absoluta); aqui eles voltam para o fluxo, abaixo dos campos. */
+.demo-login .btn, .demo-login .btn2 { position: static; align-self: center; }
+
+/* Em tela estreita as caixas do formulário têm 485px fixos no original. */
+@media only screen and (max-width: 1250px) {
+  .demo-login #mobileMain { width: min(90%, 420px); }
+  .demo-login #forms-cadastro, .demo-login #forms-login { max-width: calc(100vw - 32px); margin: 0 auto; }
+  .demo-login form { left: 0; right: 0; padding: 0 12px; align-items: center; }
+  .demo-login .form-group { flex-wrap: wrap; justify-content: center; }
+  .demo-login input { width: 100%; max-width: 300px; margin: 0; }
+  .demo-login input[type=password] { max-width: 240px; }
+  .demo-login .header-mid { max-width: 100%; }
+  .demo-login .themeSwitchBlock { right: 16px; }
+  .demo-login .input-group-addon .tooltiptext { display: none; }
+  .demo-login .warningBlock { width: auto; max-width: 420px; height: auto; margin: 20% 16px 0; padding-bottom: 12px; }
+  .demo-login .warningBlock div { width: auto; }
+  .demo-login footer { flex-direction: column; height: auto; padding: 15px 16px 50px; }
+}

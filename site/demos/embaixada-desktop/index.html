@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Embaixada · telas do programa</title>
+  <meta name="description" content="Capturas reais do Embaixada Desktop, programa em Java Swing com MySQL: cadastro, login, pedidos de passaporte e visto e consulta de documentos.">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;1,400&family=Schibsted+Grotesk:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../galeria.css">
+  <link rel="stylesheet" href="../faixa.css">
+</head>
+<body>
+  <div class="faixa-demo"><span>Demonstração. Nada é salvo no servidor.</span><a href="../../#p-embaixada-desktop">Voltar ao portfólio</a></div>
+
+  <header class="demo-topo">
+    <p class="demo-topo__nome">embaixada-desktop</p>
+    <h1>Embaixada</h1>
+    <p class="demo-topo__resumo">Programa de desktop em Java com Swing que simula o atendimento de uma embaixada: o cidadão cria uma conta, entra, pede passaporte e visto e consulta os próprios documentos. Os dados ficam num MySQL acessado via JDBC.</p>
+    <div class="acoes">
+      <a class="botao botao--baixar" href="https://github.com/oliveirahipx/embaixada-desktop/releases/download/v1.0.0/embaixada-desktop-1.0.0.jar">Baixar o .jar (v1.0.0)</a>
+      <a class="botao botao--secundario" href="https://github.com/oliveirahipx/embaixada-desktop">Código no GitHub</a>
+      <p class="acoes__nota">Java 8 ou mais novo e um MySQL. O repositório traz um docker-compose que sobe o banco já com as tabelas.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="secao" aria-labelledby="executar-titulo">
+      <h2 id="executar-titulo">Como executar</h2>
+      <ol class="execucao">
+        <li>Suba o banco com o Docker, a partir do repositório:
+          <pre class="comando">git clone https://github.com/oliveirahipx/embaixada-desktop.git
+cd embaixada-desktop
+docker compose up -d</pre>
+          Isso cria um MySQL 8.4 na porta 3306 com o banco <code>embaixadaBrasil</code> (usuário e senha <code>embaixada</code>) e roda o <code>bdEmbaixada.sql</code>.
+        </li>
+        <li>Baixe o <code>embaixada-desktop-1.0.0.jar</code> pelo botão acima e rode:
+          <pre class="comando">java -jar embaixada-desktop-1.0.0.jar</pre>
+        </li>
+        <li>Na tela de login, clique em <strong>Não possui cadastro? Clique aqui</strong>, crie um usuário e entre com o nome e a senha.</li>
+      </ol>
+      <p>Se a porta 3306 já estiver ocupada, use outra: <code>MYSQL_PORT=3307 docker compose up -d</code> e aponte o programa com <code>EMBAIXADA_DB_URL=jdbc:mysql://localhost:3307/embaixadaBrasil</code>. Sem banco acessível, o programa avisa qual endereço tentou usar.</p>
+    </section>
+
+    <section class="secao" aria-labelledby="passos-titulo">
+      <h2 id="passos-titulo">Passo a passo</h2>
+      <p>Capturas do jar da versão 1.0.0 rodando no Windows, ligado ao MySQL do docker-compose, com uma pessoa fictícia.</p>
+
+      <figure class="fluxo">
+        <img src="img/fluxo.webp" width="760" height="620" alt="Animação curta passando pelas telas: cadastro, login, menu, pedido de passaporte, pedido de visto, documentos e dados pessoais." loading="lazy">
+        <figcaption>O fluxo completo em poucos segundos.</figcaption>
+      </figure>
+
+      <ol class="passos">
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/02-cadastro.webp" width="606" height="740" alt="Tela Cadastro de Usuário com nome, senha, e-mail, telefone, RG, CPF, sexo, data de nascimento, nacionalidade, CEP e estado civil preenchidos." loading="lazy"></div>
+            <figcaption>Cadastro com os dados pessoais. A data de nascimento entra como DDMMAAAA e é convertida para o tipo DATE do MySQL.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/03-cadastro-ok.webp" width="326" height="149" alt="Mensagem Cadastro realizado com sucesso." loading="lazy"></div>
+            <figcaption>O registro é gravado na tabela <code>usuario</code>.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/01-login.webp" width="606" height="490" alt="Tela Login de Usuário com nome e senha preenchidos e os botões Login e Não possui cadastro." loading="lazy"></div>
+            <figcaption>Login por nome de usuário e senha, com consulta parametrizada (PreparedStatement).</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/05-menu-opcoes.webp" width="981" height="615" alt="Tela inicial com saudação Bem-vindo, a lista de opções aberta e o botão Confirmar." loading="lazy"></div>
+            <figcaption>Tela inicial com a saudação e as opções: visto, passaporte, documentos e dados pessoais. O segundo menu tem logout e suporte.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/06-passaporte.webp" width="606" height="553" alt="Tela Solicitar Passaporte com número, data de emissão e autoridade emissora preenchidos." loading="lazy"></div>
+            <figcaption>Pedido de passaporte: número, data de emissão (validada como DD/MM/AAAA) e autoridade emissora.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/07-passaporte-ok.webp" width="425" height="149" alt="Mensagem Solicitação de passaporte enviada com sucesso." loading="lazy"></div>
+            <figcaption>O pedido fica ligado ao usuário logado pela chave estrangeira <code>idusuario</code>.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/08-visto.webp" width="606" height="553" alt="Tela Solicitar Visto com nome, número do passaporte e data de entrada preenchidos." loading="lazy"></div>
+            <figcaption>Pedido de visto com nome, passaporte e data de entrada.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/09-documentos.webp" width="731" height="490" alt="Tela Exibir Documentos listando dois passaportes e a seção de vistos vazia." loading="lazy"></div>
+            <figcaption>Documentos do usuário. O pedido de visto aparece como passaporte com autoridade "Embaixada": é uma limitação conhecida, registrada no README.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure class="passo">
+            <div class="passo__quadro"><img src="img/10-dados-pessoais.webp" width="731" height="678" alt="Tela Dados do Usuário mostrando os dados cadastrados em campos somente leitura." loading="lazy"></div>
+            <figcaption>Dados pessoais lidos do banco, em campos somente leitura.</figcaption>
+          </figure>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p><a href="../../#p-embaixada-desktop">Voltar ao portfólio</a> · <a href="https://github.com/oliveirahipx/embaixada-desktop">Código no GitHub</a></p>
+  </footer>
+</body>
+</html>
