@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(btnAdicionar && dialogAdicionar && btnCancelarAdd){
         btnAdicionar.addEventListener('click', () => {
             // Preenche com URLs de exemplo ao abrir
-            if(inputApiUrls) inputApiUrls.value = "https://api.github.com\nhttps://example.com";
+            if(inputApiUrls) inputApiUrls.value = "https://jsonplaceholder.typicode.com/todos/1\nhttps://example.com";
             dialogAdicionar.showModal();
         });
         btnCancelarAdd.addEventListener('click', () => dialogAdicionar.close());
