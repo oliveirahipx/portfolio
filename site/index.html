@@ -9,18 +9,25 @@
   <meta property="og:description" content="Projetos de back-end em Node.js, Java, Postgres e Flutter, com código e executáveis.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://miguel.hipfinance.com.br/">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/marca/favicon-miguel.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#1A2FD8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;1,400&family=Schibsted+Grotesk:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Gabarito:wght@400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="pular" href="#projetos">Pular para os projetos</a>
 
-  <header class="topo">
+  <header class="capa">
+  <div class="capa__barra">
+    <a class="marca" href="/"><img src="assets/marca/simbolo-negativo.svg" width="30" height="30" alt="">miguel</a>
+    <a href="https://hipfinance.com.br">HIPX · criador do HipFinance</a>
+  </div>
+  <svg class="capa__diagonal" viewBox="0 0 100 100" aria-hidden="true"><path class="cat" d="M6 94H94V6"/><path class="hip" d="M6 94L94 6" pathLength="100"/></svg>
+  <div class="topo">
     <div class="topo__texto">
-      <h1 class="nome">Miguel<br>Oliveira Silva</h1>
+      <h1 class="nome">Miguel<br>Oliveira <em>Silva</em></h1>
       <p class="frase">Estudante de Ciência da Computação na UCB, focado em back-end: APIs em Node.js e Java, modelagem em Postgres e MySQL e, hoje, um app de finanças em Flutter&nbsp;+&nbsp;Supabase.</p>
       <ul class="contato" aria-label="Contato">
         <li><a href="mailto:migueloliveira.hipx@gmail.com">migueloliveira.hipx@gmail.com</a></li>
@@ -34,19 +41,20 @@
       <svg class="esquema__svg" role="img" aria-labelledby="esquema-titulo"><title id="esquema-titulo">Diagrama ligando cada tecnologia aos projetos que a usam</title></svg>
       <figcaption>Escolha uma tecnologia para ver onde eu a usei.</figcaption>
     </figure>
+  </div>
   </header>
 
   <main>
     <section id="projetos" class="secao" aria-labelledby="projetos-titulo">
       <div class="secao__cabeca">
-        <h2 id="projetos-titulo">Projetos</h2>
+        <h2 id="projetos-titulo"><span>Projetos</span></h2>
         <p class="filtro" aria-live="polite"><span data-filtro-texto>Todos os projetos.</span> <button type="button" class="filtro__limpar" data-limpar hidden>Mostrar todos</button></p>
       </div>
       <div class="tabelas" data-tabelas></div>
     </section>
 
     <section class="secao secao--estudos" aria-labelledby="estudos-titulo">
-      <h2 id="estudos-titulo">Exercícios de aula</h2>
+      <h2 id="estudos-titulo"><span>Exercícios de aula</span></h2>
       <p>Os exercícios de POO, JDBC, HTML/CSS, JavaScript e Python que fiz em aula estão reunidos num só repositório, organizados por tecnologia.</p>
       <p><a class="botao botao--secundario" href="https://github.com/oliveirahipx/estudos">Abrir o repositório estudos</a></p>
     </section>
@@ -54,6 +62,7 @@
 
   <footer class="rodape">
     <p>HTML, CSS e JavaScript puros, sem framework. <a href="https://github.com/oliveirahipx/portfolio">Código deste site</a>.</p>
+    <p class="rodape__hipx"><img src="assets/marca/simbolo.svg" width="22" height="22" alt="">HIPX · o caminho mais curto</p>
   </footer>
 
   <script src="main.js" type="module"></script>

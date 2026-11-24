@@ -20,7 +20,7 @@ export const PROJETOS = [
     nome: 'hipfinance',
     titulo: 'HipFinance',
     destaque: true,
-    icone: 'assets/hipfinance.svg',
+    icone: 'assets/marca/hipfinance-icone.svg',
     oQueFaz: 'App Android de finanças pessoais. Junta saldo, cartões, faturas e parcelas das minhas contas bancárias via Open Finance e mostra quanto vou pagar e receber no mês.',
     stack: ['Flutter', 'Dart', 'Supabase', 'Postgres + RLS', 'Edge Functions (TypeScript)'],
     tec: ['flutter', 'supabase', 'postgres'],
