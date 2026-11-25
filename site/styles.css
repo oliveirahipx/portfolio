@@ -138,6 +138,15 @@ a { color: var(--acento); text-underline-offset: .18em; text-decoration-thicknes
 .filtro { margin: 0; color: var(--tinta-2); }
 .filtro__limpar { font: inherit; color: var(--acento); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
 
+.secao--experiencia { padding-top: 48px; padding-bottom: 40px; }
+.cargos { list-style: none; margin: 24px 0 0; padding: 0; }
+.cargo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 32px; padding: 20px 0; border-top: 1px solid var(--linha); }
+@media (min-width: 760px) { .cargo { grid-template-columns: 13.5rem minmax(0, 1fr); } }
+.cargo p { margin: 0; max-width: 40em; }
+.cargo .cargo__periodo { font: 400 .9375rem/1.5 var(--f-tipo); color: var(--tinta-2); padding-top: 3px; }
+.cargo__titulo { font: 800 1.25rem/1.25 var(--f-titulo); letter-spacing: -0.01em; margin: 0; }
+.cargo .cargo__empresa { font-weight: 600; color: var(--acento); margin-bottom: 8px; }
+
 .secao--estudos { border-top: 1px solid var(--linha); padding-top: 48px; }
 .secao--estudos p { max-width: 40em; }
 
